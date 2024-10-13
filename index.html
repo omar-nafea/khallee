@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>khaled.com</title>
+</head>
+ <style>
+    /* Add basic styles here */
+    #photo-container {
+      text-align: center;
+    }
+    img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+    }
+  </style>
+<body>
+    <h2>khaled abd el sadek</h2>
+   <div id="photo-container">
+    <img id="photo" src="" alt="Random Photo">
+  </div>
+  <div style="text-align: center;">
+    <button onclick="prevPhoto()">Previous</button>
+    <button onclick="nextPhoto()">Next</button>
+  </div>
+</body>
+<script>
+    // Array of photo URLs (replace with your own URLs or local image paths)
+const photos = [
+  'khaled_1.png',
+  'khaled_2.png',
+  'khaled_3.png'
+];
+
+let currentIndex = 0;
+
+// Function to display a photo based on the current index
+function showPhoto(index) {
+  const photoElement = document.getElementById('photo');
+  photoElement.src = photos[index];
+}
+
+// Initial photo display
+showPhoto(currentIndex);
+
+// Function to shuffle photos
+function shufflePhotos() {
+  for (let i = photos.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [photos[i], photos[j]] = [photos[j], photos[i]]; // Swap elements
+  }
+}
+
+// Event handler for the Next button
+function nextPhoto() {
+  currentIndex = (currentIndex + 1) % photos.length;
+  showPhoto(currentIndex);
+}
+
+// Event handler for the Previous button
+function prevPhoto() {
+  currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+  showPhoto(currentIndex);
+}
+
+// Shuffle photos when the page loads
+shufflePhotos();
+
+</script>
+</html>
